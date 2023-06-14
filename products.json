@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Leche",
+        "description": "Lacteos",
+        "price": 200,
+        "thumbnail": "foto",
+        "stock": 50,
+        "id": 4,
+        "code": 7036
+    },
+    {
+        "title": "Mani",
+        "description": "Comida",
+        "price": 100,
+        "thumbnail": "foto",
+        "stock": 50,
+        "id": 5,
+        "code": 7582
+    },
+    {
+        "title": "Mantecol",
+        "description": "Comida",
+        "price": 300,
+        "thumbnail": "foto",
+        "stock": 50,
+        "id": 6,
+        "code": 3455
+    },
+    {
+        "title": "Queso",
+        "description": "Lacteos",
+        "price": 300,
+        "thumbnail": "foto",
+        "stock": 50,
+        "id": 7,
+        "code": 1657
+    }
+]
