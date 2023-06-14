@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
     const data = await productModel.paginate(search, options)
     console.log(JSON.stringify(data, null, 2, '\t'));
 
-    const user = req.session.user
+    const user = req.user
 
     res.render('products', {data, user})
 })

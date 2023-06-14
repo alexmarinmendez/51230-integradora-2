@@ -1,5 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
+import { JWT_COOKIE_NAME } from "../utils.js";
 
 const router = Router()
 
@@ -27,31 +28,32 @@ router.post('/login', passport.authenticate('login', { failureRedirect: '/sessio
     if (!req.user) {
         return res.status(400).send({ status: "error", error: "Invalid credentiales" })
     }
-    req.session.user = {
-        first_name: req.user.first_name,
-        last_name: req.user.last_name,
-        email: req.user.email,
-        age: req.user.age,
-    }
+    // req.session.user = {
+    //     first_name: req.user.first_name,
+    //     last_name: req.user.last_name,
+    //     email: req.user.email,
+    //     age: req.user.age,
+    // }
 
-    res.redirect('/products')
+    res.cookie(JWT_COOKIE_NAME, req.user.token).redirect('/products')
 })
 router.get('/faillogin', (req, res) => {
     res.send({error: "Fail Login"})
 })
 
-router.get('/profile', (req, res) => {
-    res.json(req.session.user)
-})
+// router.get('/profile', (req, res) => {
+//     res.json(req.session.user)
+// })
 
 // Cerrar Session
 router.get('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.log(err);
-            res.status(500).render('errors/base', { error: err })
-        } else res.redirect('/sessions/login')
-    })
+    // req.session.destroy(err => {
+    //     if (err) {
+    //         console.log(err);
+    //         res.status(500).render('errors/base', { error: err })
+    //     } else res.redirect('/session/login')
+    // })
+    res.clearCookie(JWT_COOKIE_NAME).redirect('/session/login')
 })
 
 

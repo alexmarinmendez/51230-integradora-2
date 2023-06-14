@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
+import cookieParser from "cookie-parser";
 import initializePassport from "./config/passport.config.js";
 
 import __dirname from "./utils.js"
@@ -15,6 +16,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname + "/public"))
+app.use(cookieParser())
 app.engine("handlebars", handlebars.engine())
 app.set("views", __dirname + "/views")
 app.set("view engine", "handlebars")
@@ -23,10 +25,10 @@ const MONGO_URI = "mongodb://127.0.0.1:27017"
 const MONGO_DB_NAME = "integradora2"
 
 app.use(session({
-    store: MongoStore.create({
-        mongoUrl: MONGO_URI,
-        dbName: MONGO_DB_NAME
-    }),
+    // store: MongoStore.create({
+    //     mongoUrl: MONGO_URI,
+    //     dbName: MONGO_DB_NAME
+    // }),
     secret: 'mysecret',
     resave: true,
     saveUninitialized: true
